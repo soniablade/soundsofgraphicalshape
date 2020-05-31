@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+  <head>
+        <body style="background-color:#9FFED0;">
+				<meta charset="utf-8">
+		<meta name="MobileOptimized" content="320">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+
+		<meta name="Content-Type" content="text/html; charset=utf-8">
+		<meta name="Content-language" content="en-US">
+    <script type="text/javascript">
+var nowplaying = '';
+var nowpending = '';
+var gdivs = [];
+var scandivs = [];
+var clicknumber = 1;
+var scandur = 6000;
+
+
+
+
+function playx(key, genre, me) {
+  window.clearTimeout(nowpending);
+  var spotifyplayer = document.getElementById('spotifyplayer');
+  if (nowplaying == genre) {
+      spotifyplayer.pause();
+      highlight('');
+      nowplaying = '';
+      document.getElementById('scan').innerText = 'scan';
+  } else {
+      previewurl = me.getAttribute('preview_url')
+      if (!previewurl && key) {
+          previewurl = getpreviewurl(key);
+      }
+      if (previewurl) {
+          spotifyplayer.src = previewurl;
+          spotifyplayer.play();
+          me.setAttribute('played', clicknumber++);
+          nowplaying = genre;
+          highlight(genre);
+      }
+  }
+}
+
+
+
+function playhere(me, url) {
+  var rp = document.getElementById('rp');
+  rp.style.display = 'none';
+  rp.firstChild.onload = function() {
+      rp.style.top = findPosY(me) + 20;
+      rleft = findPosX(me);
+      if (rleft + 500 > window.innerWidth) {
+          rleft = window.innerWidth - 500;
+          if (rleft < 0) {
+              rleft = 0;
+          }
+      }
+      rp.style.left = rleft;
+      rp.style.display = 'block';
+  }
+  rp.lastChild.src = url;
+}
+
+function highlight(which) {
+  if (gdivs.length == 0) {
+      gdivs = document.getElementsByClassName('genre');
+  }
+  for (i=0; i<gdivs.length; i++) {
+      thisdiv = gdivs[i];
+      thistext = thisdiv.firstChild.textContent;
+      if (thisdiv.className.indexOf('scanme') > -1) {
+          basename = 'genre scanme';
+      } else {
+          basename = 'genre';
+      }
+      if (which.length > 0 && which.trim() == thistext.trim().replace('"', '')) {
+          thisdiv.className = basename + ' current';
+          if(typeof thisdiv.scrollIntoViewIfNeeded == 'function') {
+              thisdiv.scrollIntoViewIfNeeded();
+          } else {
+              thisdiv.scrollIntoView({behavior: "smooth", block: "center", inline: "center"});
+          }
+      } else {
+          thisdiv.className = basename;
+      }
+  }
+}
+
+function scan(e, state) {
+  if (typeof(e) == 'object') {
+      if (e.altKey) {
+          scandur = 20000;
+      } else {
+          scandur = 6000;
+      }
+  }
+  var spotifyplayer = document.getElementById('spotifyplayer');
+  if (state == 'stop') {
+      spotifyplayer.pause();
+      highlight('');
+      window.clearTimeout(nowpending);
+  } else {
+      if (gdivs.length == 0) {
+          gdivs = document.getElementsByClassName('scanme');
+      }
+      scandivs = [];
+      for (i=0; i<gdivs.length; i++) {
+          thisdiv = gdivs[i];
+          if (thisdiv.getAttribute('scan') && !thisdiv.getAttribute('played')) {
+              scandivs.push(thisdiv)
+          }
+      }
+      picked = scandivs[Math.floor(Math.random() * scandivs.length)];
+      picked.onclick();
+      if (scandivs.length > 1) {
+          nowpending = window.setTimeout('scan("continue")', scandur);
+      } else {
+          nowpending = window.setTimeout('scan("stop")', scandur);
+      }
+  }
+}
+
+</script>
+
+
+</head>
+<body>
+<div style="display: none"><audio controls="controls" id=></audio></div>
+
+
+</div>
+<div>
+<div style="display: none"><audio controls="controls" id=spotifyplayer></audio></div>
+
+<div>
+</head>
+
+
+
+</style>
+<link rel='stylesheet' id='library-css'  href='style.css' type='text/css' media='all' />
+</style>
+
+      <script>
+        </script>
+    </head>
+
+    <div id="container">
+    <header id="header" class="header" role="banner" itemscope=">
+      <div id="inner-header" class="wrap cf">
+
+
+        </style>
+
+
+              </head>
+
+          <body class="home page-template-default page page-id-212 custom-background">
+            <div id="container">
+              <header id="header" class="header" role="banner">
+
+
+        <div id="nav-menu-wrapper" class="nav-menu-wrapper">
+          <div id="inner-header-menu" class="inner-header-menu wrap cf">
+            <div class="nav-content">
+              <div id="nav-menu-list" class="nav-menu-list m-all t-all d-all cf">
+                <nav class="main-nav" role="navigation">
+                    <div id="mobile-menu-wrapper">
+                      <span class="menu-item-title">Menu</span>
+                      <span class="menu-item-close">close</span>
+                    </div>
+                    <ul id="main-menu" class="nav top-nav">
+                      <li class="menu-item menu-item-type-post_type menu-item-object-page">
+                <a style="color:#00A3FF;font-size: 25px;
+                <span class="menu-item-title">
+        <span class="menu-item-close"></span>
+        </a>
+
+                  <li class="menu-item menu-item-type-post_type menu-item-object-page">
+
+            <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a style="color:#FF00E5;font-size: 20px;
+            <span class="menu-item-title">
+
+                           <a style= color:red; href= "indexdocumentary.html"</a>Documentary</span>
+                               <a style="color:#FF00E5;font-size: 20px;
+            <span class="menu-item-close"></span>
+            <a><a style="color:DodgerBlue;">&#10061;</a></div>
+         </a>
+        </li>
+
+      <div class="outline-text" style="text-align: center;">
+        <div>
+<a><a style="color:#FFACF7;">&#9754;</a></div>
+<a><a style="color:#FFACF7;"<a href="indexnew.html">Tracks</a></a>
+
+
+
+    </div>
+
+
+    <style>
+
+    .aligner {
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+
+    .page-title {
+      display: none;
+    }
+    .outline-text a {
+      color: #FDFFAC;
+      text-decoration: none !important;
+      font-size: 50px;
+      padding: 0px 30px 20px 30px;
+    }
+<div>
+
+
+</style>
+	<link rel='stylesheet' id='library-css'  href='style.css' type='text/css' media='all' />
+</style>
+
+				<script>
+					</script>
+			</head>
+
+  <link rel="stylesheet" href="style0.css">  <link rel="stylesheet" href="style0.css">  <link rel="stylesheet" href="style0.css">  <style>
+
+}
+a, a:hover, a:visited, a:active,
+label,
+footer {
+}
+ul#filters .label:hover,
+ul#filters li.featured a:hover,
+ul#filters a.scroll:hover,
+#generic-container a.home:hover,
+#generic-container a.back:hover {
+}
+  </style>
+
+</head>
+<body>
+<div id="top"></div>
+<div id="can-be-fixed">
+<div id="filter-container">
+<ul id="filters">
+
+
+
+</ul>
+</div>
+
+  <footer id="about">
+    <div>
+      <p><font face="Helvetica">Graphical sound is a sound recording created from images drawn directly onto film or paper that were then played back using a sound system. There are several different techniques depending on the technology employed, but all are a consequence of the sound-on-film technology and based on the creation of artificial optical polyphonic sound tracks on transparent film.</font></p>
+<p><font face="Helvetica">By 1936 there were several main, relatively comparable trends of Graphical Sound in Russia:
+- Hand-drawn Ornamental Sound, achieved by means of shooting still images of drawn sound waves on an animation stand, with final soundtracks produced in a transversal form (Arseny Avraamov, early Boris Yankovsky);
+- Hand-made Paper Sound with final transversal soundtracks (Nikolai Voinov)
+- The Variophone or Automated Paper Sound with soundtracks in both transversal and intensive form (Evgeny Sholpo, Georgy Rimsky-Korsakov);
+- The Syntones method, based on the idea of spectral analysis, decomposition and resynthesis, developed in 1932-1935.</font></p>
+<p><font face="Helvetica">This website is part of project about Graphical sound. Studying this theme, I repeated the technique of graphical sound using Soviet  movie-projector and film, I drew directly on film and played through the projector. The <a style="color:#F473D9;"<a href="indexnew.html">tracks</a> on the main page are named after the inventions of Soviet engineers, you can listen them by clicking on them.</font></p>
+</div>
+
+
+</div>
+
+
+
+<div id="pjax-container">
+</div>
+
+
+
+</body>
+</html>
